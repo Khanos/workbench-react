@@ -28,6 +28,49 @@
   color: #61dafb;
 }
 
+#input-text-todo{
+  width: 350px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #555;
+  outline: none;
+}
+
+#button-add-todo{
+  text-transform: uppercase;
+  width: 100px;
+  height: 45px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-top: 20px;
+  margin-right: 10px;
+  font-size: 16px;
+  color: #555;
+  outline: none;
+}
+#button-clear-todo{
+  text-transform: uppercase;
+  width: 100px;
+  height: 45px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #555;
+  outline: none;
+}
+.todo-list-item {
+  list-style: none !important;
+}
+
+.todo-list-item-checkbox {
+  margin-right: 10px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
