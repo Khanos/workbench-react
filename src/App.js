@@ -1,53 +1,56 @@
-import { useState, useRef, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { v4 as uuidv4 } from 'uuid';
-import TodoList from './components/TodoList';
+import { useState, useRef, useEffect } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { v4 as uuidv4 } from "uuid";
+import TodoList from "./components/TodoList";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
-const TODOS_KEY = 'todos';
+const TODOS_KEY = "todos";
 
 function App() {
-  const [todos, setTodos] = useState([]);
+  const storedTodos = JSON.parse(localStorage.getItem(TODOS_KEY)) || [];
+  const [todos, setTodos] = useState(storedTodos);
   const todoTaskRef = useRef();
 
   const handleAddTodo = () => {
     const taskName = todoTaskRef.current.value;
-    if( taskName === "" ) return;
+    if (taskName === "") return;
     setTodos([
       ...todos,
       {
         id: uuidv4(),
         task: taskName,
-        completed: false
-      }
+        completed: false,
+      },
     ]);
     todoTaskRef.current.value = "";
-  }
+  };
   const handleClearTodo = () => {
     setTodos([]);
-  }
+  };
   const toggleTodo = (id) => {
     setTodos(
-      todos.map(todo => {
-        if( todo.id === id ) {
+      todos.map((todo) => {
+        if (todo.id === id) {
           todo.completed = !todo.completed;
         }
         return todo;
       })
     );
-  }
-
-  useEffect(() => {
-    const todos = JSON.parse(localStorage.getItem(TODOS_KEY));
-    if( todos ) {
-      setTodos(todos);
-    }
-  } , []);
+  };
   useEffect(() => {
     localStorage.setItem(TODOS_KEY, JSON.stringify(todos));
   }, [todos]);
 
   return (
+    // <div className="container">
+    //   <button className="tabs">Domains</button>
+    //   <button className="tabs">Contest</button>
+    //   <button className="tabs">Progress</button>
+    //   <button className="tabs">Leader Board</button>
+    //   <button className="tabs">Jobs</button>
+    // </div>
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -62,14 +65,40 @@ function App() {
         >
           Learn React
         </a>
-        <input ref={todoTaskRef} id="input-text-todo" type="text" placeholder="New Task"/>
-        <div>
-          <button id="button-add-todo" onClick={handleAddTodo}>Save</button>
-          <button id="button-clear-todo" onClick={handleClearTodo}>clear</button>
+        <div id="form-container">
+          <Form>
+            <Form.Group className="mb-3" controlId="formBasicEmail" style={{display: 'flex', justifyContent: 'center'}}>
+              <Form.Control
+                ref={todoTaskRef}
+                type="text"
+                placeholder="New Task"
+                style={{maxWidth: '300px', marginRight: '10px'}}
+                autoFocus
+              />
+              {/* <Form.Control type="date" style={{maxWidth: '300px', marginLeft: '10px'}}/> */}
+            </Form.Group>
+            {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
+              <Form.Check type="checkbox" label="Check me out" />
+            </Form.Group> */}
+            <Button
+              variant="primary"
+              id="button-add-todo"
+              onClick={handleAddTodo}
+            >
+              Save
+            </Button>
+            <Button
+              variant="danger"
+              id="button-clear-todo"
+              onClick={handleClearTodo}
+            >
+              clear
+            </Button>
+          </Form>
         </div>
-        <TodoList id="ul-todo-list" todos={todos} toggleTodo={toggleTodo}/>
+        <TodoList todos={todos} toggleTodo={toggleTodo} />
         {todos.length > 0 ? (
-          <p>You have {todos.filter(el => !el.completed).length} task left</p>
+          <p>You have {todos.filter((el) => !el.completed).length} task left</p>
         ) : (
           <p>Let's add some tasks</p>
         )}
