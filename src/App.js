@@ -39,6 +39,20 @@ function App() {
       })
     );
   };
+  const handleTest = (resetLayout) => {
+    // consult the API and console.log the response
+    console.log('Testing the API 1:', {resetLayout});
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => {
+        console.log('Testing the API 2:', {resetLayout});
+        return response.json()
+      })
+      .then((data) => {
+        console.log('Testing the API 3:', {resetLayout});
+        console.log(data)
+      });
+  };
+
   useEffect(() => {
     localStorage.setItem(TODOS_KEY, JSON.stringify(todos));
   }, [todos]);
@@ -93,6 +107,13 @@ function App() {
               onClick={handleClearTodo}
             >
               clear
+            </Button>
+            <Button
+              variant="default"
+              id="button-clear-todo"
+              onClick={() => handleTest(true)}
+            >
+              Test
             </Button>
           </Form>
         </div>
