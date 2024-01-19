@@ -1,82 +1,36 @@
-.App {
-  text-align: center;
+.main-container {
+  gap: 1rem;
+  width: 100vw;
+  height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-/* .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.flex {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-} */
-
-/* .App-link {
-  color: #61dafb;
-} */
-.container{
-  padding: 40px;
-  width: 100%;
-  height: 100%;
-  background-color: antiquewhite;
-}
-.tabs{
-  background-color: lightgreen;
-  color: white ;
-  border: none;
-  padding: 20px;
-  text-align: center;
-  font-size: 16px;
-  /* float: left; */
-}
-.tabs:hover{
-  background-color: green;
 }
 
-#form-container{
-  max-width: min(60vw, 800px) !important;
-  margin: 0 auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-#button-add-todo{
-  text-transform: uppercase;
-  width: 100px;
-  height: 45px;
-  margin-right: 10px;
-}
-#button-clear-todo{
-  text-transform: uppercase;
-  width: 100px;
-  height: 45px;
-}
-.todo-list-item {
-  max-width: min(60vw, 800px) !important;
-  margin: 0 auto;
+.flex-h {
+  flex-direction: row;
 }
 
-.todo-list-item-checkbox {
-  margin-right: 10px;
+.flex-v {
+  flex-direction: column;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.list {
+  min-width: 6rem;
+  min-height: 10rem;
+  padding: 1rem;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+}
+
+.list-item {
+  gap: 0.6rem;
+}
+
+.list-action {
+  margin: 0.5rem;
+
 }
