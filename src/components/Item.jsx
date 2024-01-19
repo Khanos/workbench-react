@@ -1,12 +1,16 @@
 const Item = ({ item, handleCheck }) => {
   return (
-    <label className="list-item flex">
+    <div className="list-item flex">
       <input 
+        id={`checkbox-${item.id}`}
         type="checkbox" 
-        onChange={() => handleCheck(item)} 
+        onChange={() => handleCheck(item.id)}
+        checked={item.check} 
       />
-      {item}
-    </label>
+      <label htmlFor={`checkbox-${item.id}`}>
+        {item.id}
+      </label>
+    </div>
   )
 };
 

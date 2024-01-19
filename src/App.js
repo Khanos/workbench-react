@@ -1,45 +1,45 @@
 import React, { useState } from 'react';
 import List from './components/List';
 import Actions from './components/Actions';
-import { data } from './Data';
-import { findInterception, findDivergency } from './Utils';
+import { dataSet } from './Data';
 import './App.css'
 
 const App = () => {
-  const [leftItems, setLeftItems] = useState(data);
-  const [rightItems, setRightItems] = useState([]);
-  const [checkedList, setCheckedList] = useState([]);
+  const [items, setItems] = useState(dataSet);
 
-  const toggleCheck = (item) => {
-    const index = checkedList.indexOf(item);
-    const newCheckedList = [...checkedList];
-    if ( index !== -1) { 
-      newCheckedList.splice(index, 1);
-    } else {
-      newCheckedList.push(item);
-    }
-    setCheckedList([...newCheckedList]);
+  const toggleCheck = (id) => {
+    setItems(items.map(item => {
+      if (item.id === id) {
+        item.check = !item.check;
+      }
+      return item;
+    }));
   }
 
-  const itemsToMoveRight = findInterception(leftItems, checkedList);
-  const itemsToMoveLeft = findInterception(rightItems, checkedList);
-
   const moveToRight = () => {
-    setRightItems(rightItems.concat(itemsToMoveRight));
-    setLeftItems(findDivergency(leftItems, checkedList));
-    setCheckedList(findDivergency(checkedList, itemsToMoveRight));
+    setItems(items.map(item => {
+      if (item.check) {
+        item.check = false;
+        item.position = 'right';
+      }
+      return item;
+    }));
   };
 
   const moveToLeft = () => {
-    setLeftItems(leftItems.concat(itemsToMoveLeft));
-    setRightItems(findDivergency(rightItems, checkedList));
-    setCheckedList(findDivergency(checkedList, itemsToMoveLeft));
+    setItems(items.map(item => {
+      if (item.check) {
+        item.check = false;
+        item.position = 'left';
+      }
+      return item;
+    }));
   };
   return (
     <div className="main-container flex flex-h">
-      <List items={leftItems} handleCheck={toggleCheck} />
+      <List items={items.filter(item => item.position === 'left')} handleCheck={toggleCheck} />
       <Actions handleMoveToRight={moveToRight} handleMoveToLeft={moveToLeft} />
-      <List items={rightItems} handleCheck={toggleCheck} />
+      <List items={items.filter(item => item.position === 'right')} handleCheck={toggleCheck} />
     </div>
   )
   };
