@@ -1,0 +1,40 @@
+.main-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+th {
+  font-weight: 500;
+  padding: 0.2rem 0.5rem;
+  background: #000;
+  color: #FFF;
+}
+
+.th-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-filter {
+  padding: 0.5rem;
+  cursor: pointer;
+  width: 1rem
+}
+
+td {
+  padding: 0.2rem 0.5rem;
+}

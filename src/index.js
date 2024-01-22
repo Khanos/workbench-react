@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+// Change this line to switch between the apps
+import App from './filtered-list/App';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 

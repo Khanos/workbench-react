@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import List from './components/List';
 import Actions from './components/Actions';
-import { dataSet } from './Data';
+import { dataSet } from '../data';
 import './App.css'
 
 const App = () => {
