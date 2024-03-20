@@ -1,45 +1,28 @@
 import ArrowIcon from './ArrowIcon';
+import HeaderItem from './HeaderItem';
+
+const items = [
+  {title: 'ID', identifier: 'id'},
+  {title: 'Name', identifier: 'name'},
+  {title: 'Average Weight', identifier: 'avgWeight'},
+  {title: 'Average Lifespan', identifier: 'avgLifespan'},
+  {title: 'Average Height', identifier: 'avgHeight'},
+  {title: 'Active Breed ?', identifier: 'isActive'}
+];
 
 const Header = ({filter, setFilter}) => {
   return ( 
     <thead>
       <tr>
-        <th>
-          <div className='th-container'>
-            <div>ID</div> 
-            <ArrowIcon identifier={'id'} filter={filter} setFilter={setFilter} />
-          </div>
-        </th>
-        <th>
-          <div className='th-container'>
-            <div>Name</div> 
-            <ArrowIcon identifier={'name'} filter={filter} setFilter={setFilter} />
-          </div>
-        </th>
-        <th>
-          <div className='th-container'>
-            <div>Average Weight</div>
-            <ArrowIcon identifier={'avgWeight'} filter={filter} setFilter={setFilter} />
-          </div>
-        </th>
-        <th>
-          <div className='th-container'>
-            <div>Average Lifespan</div>
-            <ArrowIcon identifier={'avgLifespan'} filter={filter} setFilter={setFilter} />
-          </div>
-        </th>
-        <th>
-          <div className='th-container'>
-            <div>Average Height</div>
-            <ArrowIcon identifier={'avgHeight'} filter={filter} setFilter={setFilter} /> 
-          </div>
-        </th>
-        <th>
-          <div className='th-container'>
-            <div>Active Breed ? </div>
-            <ArrowIcon identifier={'isActive'} filter={filter} setFilter={setFilter} />
-          </div>
-        </th>
+        { items.map((item, index) => {
+          return(
+            <th key={index} >
+              <HeaderItem title={item.title}>
+                <ArrowIcon identifier={item.identifier} filter={filter} setFilter={setFilter} />
+              </HeaderItem>
+            </th>
+          );
+        })}
       </tr>
     </thead>
   );
