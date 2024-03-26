@@ -79,20 +79,22 @@ const App = () => {
   }
 
   return (
-    <div className="section container flex flex-col justify-center">
-      <h1>Credit Card</h1>
-      <Form 
-        cardInfo={cardInfo}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        error={error}
-      />
+    <div className="section container flex flex-row gap-4 justify-center">
+      <dir>
+        <h1>Credit Card</h1>
+        <Form 
+          cardInfo={cardInfo}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          error={error}
+        />
+      </dir>
       {showCard && (
         <div className="card">
-          <div className="card__number">{cardInfo.cardNumber}</div>
-          <div className="card__holder">{cardInfo.cardHolder}</div>
-          <div className="card__expiry-date">{cardInfo.expiryDate}</div>
-          <div className="card__cvv">{cardInfo.cvv}</div>
+          <div className="card__number"><span className="font-bold">Card Number: </span>{cardInfo.cardNumber}</div>
+          <div className="card__holder"><span className="font-bold">Card Holder: </span>{cardInfo.cardHolder}</div>
+          <div className="card__expiry-date"><span className="font-bold">Card Date: </span>{cardInfo.expiryDate}</div>
+          <div className="card__cvv"><span className="font-bold">Card CVV: </span>{cardInfo.cvv}</div>
         </div>
       )}
     </div>
